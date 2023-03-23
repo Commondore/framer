@@ -8,16 +8,9 @@ declare module 'styled-components' {
       tertiary: string
       background: string
       text: string
-      primaryTextColor: string
-      secondaryTextColor: string
-      inputPlaceholder: string
-      darkGrayText: string
-      darkText: string
-      black: string
-      white: string
+      placeholder: string
       dark: string
-      medium: string
-      light: string
+      white: string
       danger: string
       success: string
     }
