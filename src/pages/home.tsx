@@ -1,3 +1,3 @@
-export const HomePage = () => {
-  return <div>HomePage</div>
-}
+import { Example1 } from '@/components/Examples/Example1'
+
+export const HomePage = () => <Example1 />

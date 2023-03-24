@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-const BackDropBox = styled.div`
+const BackDropBox = styled(motion.div)`
   background: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
@@ -8,6 +9,7 @@ const BackDropBox = styled.div`
   width: 100%;
   height: 100%;
   z-index: 99;
+  backdrop-filter: blur(5px);
 `
 
 interface BackdropProps {
