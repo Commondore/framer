@@ -18,7 +18,7 @@ export const Example4 = () => {
 
   return (
     <BoxAnimate>
-      <Title layout>Пример № 4</Title>
+      <Title layout>Анимации при перетаскивании</Title>
 
       <List layout>
         {!!list.length ? (

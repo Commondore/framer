@@ -9,7 +9,9 @@ export const Example2 = () => {
   const [visible, setVisible] = useState(false)
   return (
     <BoxAnimate>
-      <Title>Пример № 2</Title>
+      <Title>
+        AnimatePresence обратная анимация при размонтировании, Порталы
+      </Title>
       <Button click={() => setVisible(true)} color={'success'}>
         Показать Popup
       </Button>

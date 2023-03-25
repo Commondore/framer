@@ -15,7 +15,7 @@ export const Example3 = () => {
 
   return (
     <BoxAnimate>
-      <Title>Пример № 3</Title>
+      <Title>Цепочки анимаций</Title>
 
       <List ref={scope} initial={{ opacity: 0 }}>
         <ListItem initial={{ x: '100%' }}>Element 1</ListItem>

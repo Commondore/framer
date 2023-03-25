@@ -16,16 +16,18 @@ export const ToggleButton = styled.button`
 `
 
 export const MobNavList = styled(motion.nav)`
-  margin: 1rem 0;
-  background: #ccc;
+  background: ${({ theme }) => theme.colors.tertiary};
+  padding: 1rem;
+  height: 100%;
+  border-radius: 10px;
+  text-align: center;
 `
 
 export const MobNavLink = styled(motion.a)`
   padding: 1rem 0;
-  border-bottom: #ccc 1px solid;
   display: block;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
   &.active {
     color: ${({ theme }) => theme.colors.secondary};
     font-weight: 600;

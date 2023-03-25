@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { VscChromeClose, VscMenu } from 'react-icons/vsc'
-import { NavLink } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import {
   MobNavLink,
@@ -13,29 +13,39 @@ import { Drawer } from '@/shared/Drawer'
 import { AnimatePresence, Variants } from 'framer-motion'
 
 const navVariants: Variants = {
-  hidden: {
-    opacity: 0,
+  visible: {
+    rotateY: 0,
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.3,
+      staggerChildren: 0.1,
+      delay: 0.3,
     },
   },
-  visible: {
-    opacity: 1,
+  hidden: {
+    perspective: 300,
+    rotateY: 90,
   },
 }
 
 const linkVariant: Variants = {
   hidden: {
-    x: 400,
+    y: 200,
+    opacity: 0,
   },
   visible: {
-    x: 0,
+    y: 0,
+    opacity: 1,
   },
 }
 
 export const MobileNav = () => {
   const [isExpanded, setIsExpanded] = useState(false)
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const onNavigate = (url: string) => {
+    navigate(url)
+    setIsExpanded(false)
+  }
   return (
     <MobileWrap>
       <ToggleButton onClick={() => setIsExpanded(true)}>
@@ -45,19 +55,17 @@ export const MobileNav = () => {
       <AnimatePresence>
         {isExpanded && (
           <Drawer direction="right" close={() => setIsExpanded(false)}>
-            <h3>hello</h3>
             <MobNavList
               variants={navVariants}
-              animate="visible"
               initial="hidden"
+              animate="visible"
             >
               {navData.map((item) => (
                 <MobNavLink
                   variants={linkVariant}
                   key={item.id}
-                  as={NavLink}
-                  to={item.url}
-                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={() => onNavigate(item.url)}
+                  className={pathname === item.url ? 'active' : ''}
                 >
                   {item.title}
                 </MobNavLink>

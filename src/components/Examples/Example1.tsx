@@ -28,7 +28,7 @@ export const Example1 = () => {
 
   return (
     <BoxAnimate>
-      <Title>Пример № 1</Title>
+      <Title>Простые анимации и их свойства</Title>
       <motion.div
         onClick={togglePost}
         animate={{
@@ -40,6 +40,7 @@ export const Example1 = () => {
       {Array.from(Array(5), (_, index) => {
         return (
           <motion.div
+            key={index}
             variants={variants}
             custom={index / 2}
             animate="start"
