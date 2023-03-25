@@ -24,7 +24,7 @@ body {
   text-rendering: optimizeSpeed;
   font-family: ${({ theme }) => theme.fonts.Inter}, sans-serif;
   font-size: 1rem;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.dark};
   background-color: ${({ theme }) => theme.colors.background};
   line-height: 1;
 }

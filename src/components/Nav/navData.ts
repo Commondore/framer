@@ -20,4 +20,9 @@ export const navData: INavData[] = [
     title: 'Пример 3',
     url: '/example3',
   },
+  {
+    id: 4,
+    title: 'Пример 4',
+    url: '/example4',
+  },
 ]

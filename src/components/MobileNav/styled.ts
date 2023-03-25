@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 export const MobileWrap = styled.div`
@@ -14,11 +15,12 @@ export const ToggleButton = styled.button`
   }
 `
 
-export const MobNavList = styled.nav`
+export const MobNavList = styled(motion.nav)`
   margin: 1rem 0;
+  background: #ccc;
 `
 
-export const MobNavLink = styled.a`
+export const MobNavLink = styled(motion.a)`
   padding: 1rem 0;
   border-bottom: #ccc 1px solid;
   display: block;

@@ -1,7 +1,8 @@
 import { Backdrop } from '@/shared/Backdrop'
+import { Variants, motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export const DrawerMenu = styled.div`
+export const DrawerMenu = styled(motion.div)`
   position: fixed;
   top: 0;
   width: 300px;
@@ -11,6 +12,19 @@ export const DrawerMenu = styled.div`
   padding: 1rem;
   box-shadow: -1px 0 10px rgba(0, 0, 0, 0.2);
 `
+
+const drawMenuVariant: Variants = {
+  visible: {
+    x: 0,
+    transition: {
+      type: 'tween',
+      ease: 'easeIn',
+    },
+  },
+  hidden: {
+    x: '100%',
+  },
+}
 
 interface DrawerProps {
   children: React.ReactNode
@@ -26,7 +40,25 @@ export const Drawer = ({
   return (
     <>
       <Backdrop close={close} />
-      <DrawerMenu style={{ [direction]: 0 }}>{children}</DrawerMenu>
+      <DrawerMenu
+        // variants={drawMenuVariant}
+        initial={{
+          x: '100%',
+        }}
+        animate={{
+          x: 0,
+          transition: {
+            type: 'tween',
+            ease: 'easeIn',
+          },
+        }}
+        exit={{
+          x: '100%',
+        }}
+        style={{ [direction]: 0 }}
+      >
+        {children}
+      </DrawerMenu>
     </>
   )
 }

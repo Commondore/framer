@@ -1,9 +1,13 @@
+import { useId } from 'react'
+
+import { Portal } from '@/components/Portal'
 import { useMediaQuery } from '@/hooks/useMedia'
 import { Backdrop } from '@/shared/Backdrop'
 import { device } from '@/styles/Breakpoints'
+import { AnimatePresence, Variants, motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
-const PopupBox = styled.div<{ isDesktop: boolean }>`
+const PopupBox = styled(motion.div)<{ isDesktop: boolean }>`
   position: fixed;
   bottom: ${({ isDesktop }) => (isDesktop ? '50%' : 0)};
   left: 50%;
@@ -34,6 +38,20 @@ const PopupBox = styled.div<{ isDesktop: boolean }>`
   }
 `
 
+const popupVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 200,
+    x: '-50%',
+  },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.2 },
+    y: 0,
+    x: '-50%',
+  },
+}
+
 interface PopupProps {
   close: () => void
   children: React.ReactNode
@@ -42,10 +60,25 @@ interface PopupProps {
 
 export const Popup = ({ close, children, visible }: PopupProps) => {
   const isDesktop = useMediaQuery('(min-width: 992px)')
-  return visible ? (
-    <>
-      <Backdrop close={close} />
-      <PopupBox isDesktop={isDesktop}>{children}</PopupBox>
-    </>
-  ) : null
+  const id = useId()
+  return (
+    <Portal id={id}>
+      <AnimatePresence>
+        {visible ? (
+          <>
+            <Backdrop close={close} />
+            <PopupBox
+              variants={popupVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              isDesktop={isDesktop}
+            >
+              {children}
+            </PopupBox>
+          </>
+        ) : null}
+      </AnimatePresence>
+    </Portal>
+  )
 }

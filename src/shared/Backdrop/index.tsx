@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { Variants, motion } from 'framer-motion'
 import styled from 'styled-components'
 
 const BackDropBox = styled(motion.div)`
@@ -12,10 +12,27 @@ const BackDropBox = styled(motion.div)`
   backdrop-filter: blur(5px);
 `
 
+const backdropVariants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+}
+
 interface BackdropProps {
   close: () => void
 }
 
 export const Backdrop = ({ close }: BackdropProps) => {
-  return <BackDropBox onClick={close} />
+  return (
+    <BackDropBox
+      variants={backdropVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      onClick={close}
+    />
+  )
 }
